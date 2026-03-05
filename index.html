@@ -2,71 +2,379 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>My Website</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My Portfolio</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: sans-serif;
-    background: #f4f4f4;
-    color: #333;
+/* ===== Base ===== */
+:root{
+  --bg:#f4f4f4;
+  --text:#222;
+  --muted:#555;
+  --panel:#fff;
+  --line:#e6e6e6;
+  --accent:#2f6feb;
+  --shadow:0 10px 24px rgba(0,0,0,.08);
+  --radius:16px;
+  --max:860px;
 }
 
-header {
-    background: #222;
-    color: white;
-    padding: 60px 20px;
-    text-align: center;
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.75;
 }
 
-section {
-    max-width: 800px;
-    margin: 60px auto;
-    padding: 0 20px;
+a{
+  color:var(--accent);
+  text-decoration:none;
+}
+a:hover{ text-decoration:underline; }
+
+.container{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:0 20px;
 }
 
-h2 {
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
+/* ===== Header ===== */
+header{
+  background:#222;
+  color:#fff;
+  padding:64px 20px 34px;
+  text-align:center;
+}
+header h1{
+  margin:0 0 10px;
+  font-size: clamp(28px, 4vw, 42px);
+  letter-spacing:.2px;
+}
+header .subtitle{
+  margin:0 auto;
+  max-width:70ch;
+  color:rgba(255,255,255,.82);
+  font-size:14px;
 }
 
-ul {
-    padding-left: 20px;
+/* ===== Sticky Nav ===== */
+nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background: rgba(244,244,244,.92);
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 0;
+}
+.brand{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.brand strong{ font-size:14px; }
+.brand span{ font-size:12px; color:var(--muted); }
+
+.menu{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.menu a{
+  display:inline-block;
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid transparent;
+  color:var(--muted);
+}
+.menu a:hover{
+  border-color:#d7d7d7;
+  background:#fff;
+  color:var(--text);
+  text-decoration:none;
 }
 
-footer {
-    text-align: center;
-    padding: 40px 20px;
-    background: #222;
-    color: white;
-    margin-top: 60px;
+/* ===== Sections ===== */
+section{
+  margin:56px auto;
+  padding:0;
 }
+.section-title{
+  margin:0 0 14px;
+  font-size:20px;
+  border-bottom:2px solid #ddd;
+  padding-bottom:10px;
+}
+
+/* Card */
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+
+.lead{
+  margin:0;
+  color:var(--muted);
+}
+
+/* Pills */
+.pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+.pill{
+  font-size:12px;
+  color:var(--muted);
+  border:1px solid var(--line);
+  background:#fafafa;
+  padding:6px 10px;
+  border-radius:999px;
+}
+
+/* Works grid */
+.works{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:14px;
+  margin-top:14px;
+}
+@media (max-width:720px){
+  .works{ grid-template-columns: 1fr; }
+}
+
+.work{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:16px;
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  min-height:190px;
+}
+.work h3{
+  margin:0;
+  font-size:16px;
+}
+.work p{
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+}
+.work .meta{
+  margin-top:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.work .stack{
+  font-size:12px;
+  color:var(--muted);
+}
+.work .btnlink{
+  font-size:12px;
+  padding:7px 10px;
+  border-radius:999px;
+  border:1px solid #cfe0ff;
+  background:#eef4ff;
+  color:var(--accent);
+  text-decoration:none;
+  white-space:nowrap;
+}
+.work .btnlink:hover{
+  background:#e5efff;
+  text-decoration:none;
+}
+
+/* Skills grid */
+.skills{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:14px;
+  margin-top:14px;
+}
+@media (max-width:900px){
+  .skills{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width:720px){
+  .skills{ grid-template-columns: 1fr; }
+}
+
+.skills ul{
+  margin:10px 0 0;
+  padding-left:18px;
+  color:var(--muted);
+}
+.skills li{ margin:6px 0; }
+
+/* Contact buttons */
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+.action{
+  display:inline-block;
+  padding:10px 12px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:#fff;
+  box-shadow:var(--shadow);
+  color:var(--text);
+  text-decoration:none;
+}
+.action.primary{
+  border-color:#cfe0ff;
+  background:#eef4ff;
+  color:var(--accent);
+}
+.action:hover{ text-decoration:none; transform: translateY(-1px); }
+
+/* Footer */
+footer{
+  text-align:center;
+  padding:40px 20px;
+  background:#222;
+  color:white;
+  margin-top:60px;
+}
+footer p{ margin:0; color:rgba(255,255,255,.85); font-size:13px; }
+.small{ font-size:12px; color:rgba(255,255,255,.7); margin-top:8px; }
 </style>
 
 </head>
 <body>
 
 <header>
-    <h1>My Website</h1>
+  <h1>My Portfolio</h1>
+  <p class="subtitle"></p>
 </header>
 
-<section>
-    <h2>About</h2>
-    <p>
-        college student / Python / Flask / Building small web applications
-    </p>
-</section>
+<nav>
+  <div class="container nav-inner">
+    <div class="brand">
+      <strong></strong>
+      <span></span>
+    </div>
+    <div class="menu" aria-label="セクションメニュー">
+      <a href="#about">About</a>
+      <a href="#works">Works</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
 
-<section>
-    <h2>Works</h2>
-    <ul>
-        <li><a href="https://github.com/Arbeit2025">GitHub Profile</a></li>
-    </ul>
-</section>
+<main class="container">
+
+  <section id="about">
+    <h2 class="section-title">About</h2>
+    <div class="card">
+      <p class="lead">
+        大学で情報分野を学びながら、PythonとFlaskを使った小さなWebツールを制作しています。
+アイデアを形にするプロセスが好きで、シンプルで使いやすいツールを作ることを目指しています。
+　　　　</p>
+      <div class="pills">
+      </div>
+    </div>
+  </section>
+
+  <section id="works">
+    <h2 class="section-title">Works</h2>
+
+    <div class="works">
+      <article class="work">
+        <h3>GitHub Profile</h3>
+        <p>制作物や学習ログをまとめています。</p>
+        <div class="meta">
+          <span class="stack"></span>
+          <a class="btnlink" href="https://github.com/Arbeit2025" target="_blank" rel="noreferrer">Open</a>
+        </div>
+      </article>
+
+      <article class="work">
+        <h3>cocoletter</h3>
+        <p> Flaskで開発したシンプルなメモWebアプリ。
+メモの作成・編集・削除などのCRUD機能を実装し、
+日常的に使える小さなツールとして開発しています。
+　　　　　</p>
+        <div class="meta">
+          <span class="stack">Python / Flask / SQLite</span>
+　　　　<a href="https://nittaspring.pythonanywhere.com/" target="_blank">
+     　　 Live Demo
+    　　</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2 class="section-title">Skills</h2>
+
+    <div class="skills">
+      <div class="card">
+        <strong>Frontend</strong>
+        <ul>
+          <li>HTML / CSS</li>
+          <li>JavaScript</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <strong>Backend</strong>
+        <ul>
+          <li>Python</li>
+          <li>Flask</li>
+          <li>SQLite</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <div class="card">
+      <p class="lead"></p>
+      <div class="actions">
+        <a class="action primary" href="mailto:teru.jb@icloud.com">Mail</a>
+        <a class="action" href="https://github.com/Arbeit2025" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+</main>
 
 <footer>
-    <p>© 2026 My Website</p>
+  <p>© <span id="year"></span> My Portfolio</p>
 </footer>
+
+<script>
+  const now = new Date();
+  document.getElementById("year").textContent = now.getFullYear();
+  document.getElementById("today").textContent =
+    now.getFullYear() + "-" +
+    String(now.getMonth()+1).padStart(2,"0") + "-" +
+    String(now.getDate()).padStart(2,"0");
+</script>
 
 </body>
 </html>
