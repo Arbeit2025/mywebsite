@@ -535,6 +535,73 @@ footer {
   }
 }
 
+
+/* ===== PCで文字を少し細く、Apple寄りに見せる ===== */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+               "SF Pro Text", "Segoe UI Variable Text", "Segoe UI",
+               "Yu Gothic UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  color: #2a2a2a;
+}
+
+/* 本文を軽くする */
+.card p,
+.about-text,
+.work-desc,
+.skill-card ul,
+.stack,
+.topnav a {
+  font-weight: 400;
+  color: #5f6368;
+  letter-spacing: -0.01em;
+}
+
+/* タイトル類を少しだけ軽くする */
+.hero h1 {
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.section-title {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.card h3 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* ボタン文字も少し軽く */
+.pill-btn,
+.pill-btn.gray {
+  font-weight: 500;
+}
+
+/* PC表示のときだけ、さらに少し薄く */
+@media (min-width: 641px) {
+  .about-text,
+  .work-desc,
+  .skill-card ul,
+  .stack,
+  .topnav a {
+    font-size: 0.98rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.1rem, 4.6vw, 3.3rem);
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3vw, 2.2rem);
+  }
+
+  .card h3 {
+    font-size: 1.28rem;
+  }
+}
+
   </style>
 </head>
 <body>
