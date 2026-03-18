@@ -277,6 +277,264 @@
         padding: 12px 18px;
       }
     }
+
+/* ===== 雰囲気だけ上書き ===== */
+
+body {
+  background:
+    linear-gradient(180deg, #ececec 0%, #e7e7e8 100%);
+  color: #202020;
+}
+
+.hero {
+  background:
+    linear-gradient(180deg, #111111 0%, #1d1d1f 55%, #252527 100%);
+  padding: 88px 20px 76px;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.03);
+}
+
+.hero h1 {
+  font-size: clamp(2.3rem, 6vw, 3.9rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.topnav-wrap {
+  background: rgba(246, 246, 246, 0.92);
+  border-bottom: 1px solid #dddddd;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset;
+}
+
+.topnav {
+  padding: 22px 20px;
+  gap: 26px;
+}
+
+.topnav a {
+  color: #666666;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.container {
+  max-width: 1120px;
+  padding: 72px 24px 92px;
+}
+
+section {
+  margin-bottom: 84px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  margin: 0 0 20px 0;
+  letter-spacing: -0.03em;
+}
+
+.section-line {
+  height: 5px;
+  margin-bottom: 30px;
+  background: #d6d6d7;
+  opacity: 0.95;
+}
+
+.card {
+  background: #f7f7f8;
+  border: 1px solid #e1e1e2;
+  border-radius: 30px;
+  padding: 30px 32px;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.85) inset,
+    0 10px 28px rgba(0,0,0,0.035);
+}
+
+.card h3 {
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.card p,
+.about-text,
+.work-desc,
+.stack,
+.skill-card ul {
+  color: #55585c;
+}
+
+.about-text {
+  font-size: 1.08rem;
+  line-height: 1.95;
+}
+
+.works-grid {
+  gap: 28px;
+}
+
+.work-card {
+  min-height: 300px;
+}
+
+.work-body {
+  margin-bottom: 34px;
+}
+
+.work-desc {
+  line-height: 1.9;
+}
+
+.work-meta {
+  gap: 18px;
+  align-items: center;
+}
+
+.stack {
+  font-size: 0.98rem;
+  color: #65686c;
+}
+
+.pill-btn {
+  min-width: 108px;
+  padding: 15px 24px;
+  border-radius: 999px;
+  border: 2px solid #d6defc;
+  background: rgba(93, 126, 241, 0.04);
+  color: #4a70ea;
+  font-weight: 500;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset;
+}
+
+.pill-btn:hover {
+  background: rgba(93, 126, 241, 0.09);
+  transform: translateY(-1px);
+}
+
+.pill-btn.gray {
+  border-color: #d8d8d9;
+  background: #f5f5f6;
+  color: #2f2f31;
+}
+
+.pill-btn.gray:hover {
+  background: #efeff0;
+}
+
+.skills-grid {
+  gap: 28px;
+}
+
+.skill-card ul {
+  line-height: 2;
+  font-size: 1.02rem;
+}
+
+.skill-card li {
+  margin-bottom: 14px;
+}
+
+.contact-actions {
+  gap: 18px;
+}
+
+footer {
+  background: linear-gradient(180deg, #171717 0%, #1f1f20 100%);
+  color: #f1f1f1;
+  padding: 48px 20px;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+}
+
+/* ===== スマホの見た目をスクショ寄りに ===== */
+@media (max-width: 900px) {
+  .works-grid,
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .work-card {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 74px 20px 62px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 9vw, 3.3rem);
+  }
+
+  .topnav {
+    padding: 18px 12px;
+    gap: 16px 22px;
+  }
+
+  .topnav a {
+    font-size: 0.98rem;
+  }
+
+  .container {
+    padding: 54px 16px 72px;
+  }
+
+  section {
+    margin-bottom: 66px;
+  }
+
+  .section-title {
+    font-size: 1.95rem;
+    margin-bottom: 18px;
+  }
+
+  .section-line {
+    height: 4px;
+    margin-bottom: 24px;
+  }
+
+  .card {
+    border-radius: 28px;
+    padding: 28px 24px;
+  }
+
+  .card h3 {
+    font-size: 1.28rem;
+  }
+
+  .about-text,
+  .work-desc,
+  .skill-card ul {
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+
+  .works-grid,
+  .skills-grid {
+    gap: 22px;
+  }
+
+  .work-body {
+    margin-bottom: 28px;
+  }
+
+  .work-meta {
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  .pill-btn {
+    min-width: 96px;
+    padding: 13px 20px;
+    font-size: 0.98rem;
+  }
+
+  footer {
+    padding: 42px 20px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -409,3 +667,4 @@
   </footer>
 </body>
 </html>
+
