@@ -710,6 +710,99 @@ footer {
   color: #e8f0fd;
 }
 
+
+/* ===== アニメーション（ヒーロー／フッターの流れ＋泡、カードと絵文字、トップへ戻る） ===== */
+.hero, footer {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(120deg, #0b2a5b 0%, #11408c 30%, #1a56b0 55%, #2f6bd8 75%, #11408c 100%);
+  background-size: 300% 300%;
+  animation: gradientFlow 16s ease infinite;
+}
+footer {
+  background: linear-gradient(120deg, #0a2450 0%, #0e3168 35%, #1750a3 60%, #0e3168 85%, #0a2450 100%);
+  background-size: 300% 300%;
+}
+@keyframes gradientFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.hero::before, footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.32) 0 4px, transparent 5px),
+    radial-gradient(circle, rgba(255,255,255,0.20) 0 7px, transparent 8px),
+    radial-gradient(circle, rgba(255,255,255,0.26) 0 3px, transparent 4px);
+  background-size: 180px 180px, 260px 260px, 120px 120px;
+  animation: bubblesRise 14s linear infinite;
+  pointer-events: none;
+}
+@keyframes bubblesRise {
+  from { background-position: 20px 180px, 90px 260px, 140px 120px; }
+  to { background-position: 34px -180px, 76px -260px, 152px -120px; }
+}
+.hero h1 { position: relative; z-index: 1; }
+footer { z-index: 0; }
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.9) inset,
+    0 18px 36px rgba(21, 71, 148, 0.16);
+}
+.emoji { display: inline-block; }
+.section-title:hover .emoji, .topnav a:hover .emoji {
+  animation: emojiBounce 0.6s ease;
+}
+@keyframes emojiBounce {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-8px) scale(1.12); }
+  60% { transform: translateY(2px); }
+}
+
+#backToTop {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: #1a56b0;
+  color: #fff;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(21, 71, 148, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
+  z-index: 50;
+}
+#backToTop.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+#backToTop:hover {
+  background: #2f6bd8;
+  transform: translateY(-3px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero, footer { animation: none; }
+  .hero::before, footer::before { animation: none; }
+  .card { transition: none; }
+  .section-title:hover .emoji, .topnav a:hover .emoji { animation: none; }
+}
 </style>
 </head>
 <body>
@@ -719,16 +812,16 @@ footer {
 
   <div class="topnav-wrap">
     <nav class="topnav">
-      <a href="#about">About🐦</a>
-      <a href="#works">Works🛠️</a>
-      <a href="#skills">Skills🖥️</a>
-      <a href="#contact">Contact📱</a>
+      <a href="#about">About<span class="emoji">🐦</span></a>
+      <a href="#works">Works<span class="emoji">🛠️</span></a>
+      <a href="#skills">Skills<span class="emoji">🖥️</span></a>
+      <a href="#contact">Contact<span class="emoji">📱</span></a>
     </nav>
   </div>
 
   <main class="container">
     <section id="about">
-      <h2 class="section-title">About🐦</h2>
+      <h2 class="section-title">About<span class="emoji">🐦</span></h2>
       <div class="section-line"></div>
       <div class="card">
         <p class="about-text">
@@ -740,7 +833,7 @@ footer {
     </section>
 
     <section id="works">
-      <h2 class="section-title">Works🛠️</h2>
+      <h2 class="section-title">Works<span class="emoji">🛠️</span></h2>
       <div class="section-line"></div>
 
       <div class="works-grid">
@@ -945,7 +1038,7 @@ footer {
     </section>
 
     <section id="skills">
-      <h2 class="section-title">Skills🖥️</h2>
+      <h2 class="section-title">Skills<span class="emoji">🖥️</span></h2>
       <div class="section-line"></div>
 
       <div class="skills-grid">
@@ -969,7 +1062,7 @@ footer {
     </section>
 
     <section id="contact">
-      <h2 class="section-title">Contact📱</h2>
+      <h2 class="section-title">Contact<span class="emoji">📱</span></h2>
       <div class="section-line"></div>
 
       <div class="card">
@@ -991,6 +1084,22 @@ footer {
   <footer>
     © 2026 Portfolio
   </footer>
+
+  <button id="backToTop" type="button" aria-label="トップへ戻る">↑</button>
+  <script>
+    (function () {
+      var btn = document.getElementById('backToTop');
+      function onScroll() {
+        if (window.scrollY > 400) { btn.classList.add('show'); }
+        else { btn.classList.remove('show'); }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+      btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
 </body>
 </html>
 
